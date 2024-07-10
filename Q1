@@ -1,0 +1,9 @@
+class Solution:
+    def sortColors(self, a: List[int]) -> None:
+        z = o = t = -1
+        for v in a:
+            a[t:=t+1] = 2
+            if v < 2:
+                a[o:=o+1] = 1
+                if v < 1:
+                    a[z:=z+1] = 0
