@@ -1,0 +1,40 @@
+from typing import List
+class Solution:
+    def smallerNumbersThanCurrent(self, nums : List[int]) -> List[int]:
+        
+        """_summary_
+            Time complexity : O(n^2)
+            Space COmplecity : O(n) 
+        """
+        
+        """
+        dict = {}
+        
+        for i in range(len(nums)):
+            count = 0
+            for j in range(len(nums)):
+                if i!=j and nums[i] > nums[j] :
+                    count+=1
+            dict[i] =  count
+        
+        result = [dict[i] for i in range(len(nums))]
+        return result
+        """
+          
+        """_summary_
+            Time complexity : O(nlog(n))
+            Space COmplecity : O(n) 
+        """
+        
+        sorted_nums =  sorted(nums)
+        dict = {}
+        for i,num in enumerate(sorted_nums):
+            if num not in dict:
+                dict[num] = i
+           
+        return [dict[i] for i in nums]            
+        
+     
+nums = [1,2,3,4,5,3]
+solution = Solution()
+print(solution.smallerNumbersThanCurrent(nums))
