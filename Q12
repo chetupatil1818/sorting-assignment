@@ -1,0 +1,28 @@
+import heapq
+class Solution:
+    def buyChoco(self, prices: List[int], money: int) -> int:
+        # Optimal: O(n) runtime, O(1) space 
+        smallest = math.inf
+        smallest2 = math.inf
+
+        for i, num in enumerate(prices): 
+            if num < smallest2: 
+                if num < smallest: 
+                    smallest2 = smallest
+                    smallest = num 
+                else: 
+                    smallest2 = num 
+        
+        if smallest + smallest2 <= money: 
+            return money - smallest - smallest2
+        
+        return money
+
+        # one liner with sorting time: O(n + nlog2)
+        return money if sum(heapq.nsmallest(2, prices)) > money else money - sum(heapq.nsmallest(2, prices))
+
+        # we can use sorting to return the first two items O(nlogn) time, O(1) space
+        prices.sort() # can also sort with prices = sorted(prices)
+        if prices[0] + prices[1] <= money: 
+            return money - prices[0] - prices[1]
+        return money 
