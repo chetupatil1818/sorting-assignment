@@ -1,0 +1,3 @@
+class Solution:
+    def findRelativeRanks(self, a: List[int]) -> List[str]:
+        return map(dict(zip(sorted(a)[::-1],chain(('Gold Medal','Silver Medal','Bronze Medal'),map(str,count(4))))).get,a)
